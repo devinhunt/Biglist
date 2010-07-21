@@ -1,0 +1,72 @@
+/**
+ * Hailpixel CSS
+ * @author Devin Hunt
+ * @website http://www.hailpixel.com
+ */
+
+/*_________________________________________________________ Global Reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em,
+img, ins, kbd, q, samp, small, strike, strong, sub, sup,
+tt, var, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+ margin: 0; padding: 0; border: 0; outline: 0; vertical-align: baseline; background: transparent; 
+ font-family: <?= $ffLucidia; ?>;
+}
+ul, li { list-style: none; }
+table { border-spacing: 0; border-collapse: collapse; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote, q { quotes: none; }
+:focus { outline: 0; }
+
+.clearit:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearit { zoom: 1; }
+* html .clearit { height: 1%; }
+
+/*_________________________________________________________ Typography - Global */
+@font-face {
+	font-family: 'TradeGothic18';
+	src: url('../fonts/tradegothicltstd-cn18-webfont.eot');
+	src: local('☺'), url('../fonts/tradegothicltstd-cn18-webfont.woff') format('woff'), url('../fonts/tradegothicltstd-cn18-webfont.ttf') format('truetype'), url('../fonts/tradegothicltstd-cn18-webfont.svg#webfont44edSEOy') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TradeGothic18';
+	src: url('../fonts/tradegothicltstd-bdcn20-webfont.eot');
+	src: local('☺'), url('../fonts/tradegothicltstd-bdcn20-webfont.woff') format('woff'), url('../fonts/tradegothicltstd-bdcn20-webfont.ttf') format('truetype'), url('../fonts/tradegothicltstd-bdcn20-webfont.svg#webfontKKhzV9YZ') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+body { font-family: 'TradeGothic18', Helvetica, Arial, sans-serif; font-size: 62.5%; }
+
+/*_________________________________________________________ Structure - Grids */
+.boxgrid { width: 960px; margin-left: auto; margin-right: auto; }
+.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8 { 
+    display: inline; float: left; margin-left: 8px; margin-right: 8px;}
+
+.boxgrid .box1 { width: 104px; }
+.boxgrid .box2 { width: 224px; }
+.boxgrid .box3 { width: 344px; }
+.boxgrid .box4 { width: 464px; }
+.boxgrid .box5 { width: 584px; }
+.boxgrid .box6 { width: 704px; }
+.boxgrid .box7 { width: 824px; }
+.boxgrid .box8 { width: 944px; }
+
+.boxgrid .first { margin-left: 0; }
+.boxgrid .last { margin-right: 0; }
+
+/*_________________________________________________________ Structure - Mixins */
+
+/*_________________________________________________________ Typography - Header */
+header { margin-top: 40px; }
+header h1 { font-size: 3.6em; text-transform: uppercase; font-weight: bold; text-align: center; 
+            border-top: 1px solid black; border-bottom: 1px solid black; line-height: 72px; padding-top: 4px; }
+
+/*_________________________________________________________ Typography - Todo List */
+.check { }
+.task { font-size: 4.8em; text-transform: uppercase; }

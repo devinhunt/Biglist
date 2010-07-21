@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul id="todoList">
+        {% for todo in todos %}
+        <li class="box8">
+            <div class="check box1 first">
+                {{ todo.done }}
+            </div>
+            <div class="task box7 last">
+                {{ todo.task }}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
