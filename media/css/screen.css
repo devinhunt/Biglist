@@ -78,9 +78,13 @@ header h1 span { font-size: 18px; font-weight: normal; }
 #todoList { padding-top: 112px;}
 .todo { padding: 16px 0; 
         position: relative;}
-.check { position: absolute; width: 52px; height: 52px; top: 16px; left: 0; }
+.check { position: absolute; width: 52px; height: 52px; top: 8px; left: 0; text-indent: -9999px; }
+.check a { display: block; width: 52px; height: 52px; background: url('/static/img/check.jpg'); }
+.check:hover a { display: block; width: 52px; height: 52px; background: url('/static/img/check.jpg') 0 -52px; }
 .task { padding-left: 52px; font-family: 'TradeGothic18', Helvetica, Arial; font-size: 4.8em; text-transform: uppercase; line-height: 48px; }
 
 #doneList .todo { padding: 8px 0;}
-#doneList .check { position: absolute; width: 18px; height: 18px; top: 8px; left: 0; }
+#doneList .check { position: absolute; width: 36px; height: 8px; top: 12px; left: 8px; }
+#doneList .check a { display: block; height: 8px; width: 36px; background: white; }
+#doneList .check:hover a { display: block; background: red; }
 #doneList .task { font-family: Helvetica, Arial; font-size: 1.8em; text-transform: none; line-height: 18px; color: #aaa; text-decoration: line-through;}
