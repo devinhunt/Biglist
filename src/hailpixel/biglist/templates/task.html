@@ -1,0 +1,16 @@
+<li class="todo box8">
+    <div class="check box1 first">
+        {% if todo.done %}
+        <a href="#" >
+            DONE!
+        </a>
+        {% else %}
+        <a href="#" onclick="return markDone({{ todo.pk }})">
+            NOT DONE!
+        </a>
+        {% endif %}
+    </div>
+    <div class="task box7 last">
+        {{ todo.task }}
+    </div>
+</li>

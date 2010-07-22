@@ -14,7 +14,19 @@
             }
             
             function submitTask() {
-                $.post($('#addTaskForm').attr('action'), $('#addTaskForm').serialize());
+                
+                $.post($('#addTaskForm').attr('action'), $('#addTaskForm').serialize(), function(data) {
+                    data = JSON.parse(data);
+                    if(data.success) {
+                        $('#todoList').prepend(data.task_html);
+                    }
+                });
+                
+                return false;
+            }
+            
+            function markDone(taskId) {
+                console.log(taskId)
                 return false;
             }
         </script>
