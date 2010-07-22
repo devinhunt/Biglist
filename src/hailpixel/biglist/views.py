@@ -35,7 +35,7 @@ def add_task(request):
         'form' : form
     })
     
-def mark_task_complete(request):
+def mark_todo_complete(request):
     if request.method == 'POST':
         try:
             todo = Todo.objects.get(pk = request.POST.get('todo_pk'))
@@ -48,6 +48,21 @@ def mark_task_complete(request):
         except:
             return HttpResponse(ajax_response(False));
         
+    else:
+        return HttpResponse(ajax_response(False));
+        
+def mark_todo_incomplete(request):
+    if request.method == 'POST':
+        try:
+            todo = Todo.objects.get(pk = request.POST.get('todo_pk'))
+            todo.done = False
+            todo.created = datetime.now()
+            todo.save()
+            task_html = render_to_string('task.html', {'todo' : todo})
+            
+            return HttpResponse(ajax_response(True, task_html));
+        except:
+            return HttpResponse(ajax_response(False));
     else:
         return HttpResponse(ajax_response(False));
     

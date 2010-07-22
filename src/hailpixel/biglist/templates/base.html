@@ -26,13 +26,29 @@
                 return false;
             }
             
-            function markDone(taskId) {
+            function markComplete(taskId) {
                 $.post('/complete/', {todo_pk : taskId}, function(data) {
                     data = JSON.parse(data);
                     
                     if(data.success) {
-                        $('#todo' + taskId).remove();
+                        $('#todoList #todo' + taskId).slideUp('normal', function() {
+                            $('#todoList #todo' + taskId).remove();
+                        });
+                        
                         $('#doneList').prepend(data.html);
+                        $('#doneList #todo' + taskId).hide().slideDown('normal');
+                    }
+                });
+                return false;
+            }
+            
+            function markIncomplete(taskId) {
+                $.post('/incomplete/', {todo_pk : taskId}, function(data) {
+                    data = JSON.parse(data);
+                    
+                    if(data.success) {
+                        $('#todo' + taskId).remove();
+                        $('#todoList').prepend(data.html);
                     }
                 });
                 return false;
@@ -43,8 +59,8 @@
     <body>
         <div class="boxgrid" role="main">
             
-            <header class="box8">
-                <h1>Devin Hunt's Big List</h1>
+            <header class="box2 reverse">
+                <h1><span>Devin Hunt's</span> <br/> Big List</h1>
                 
                 <ul class="navigation">
                     <li>
@@ -56,8 +72,10 @@
                 </ul>
             </header>
             
+            <section id="content" class="box6">
             {% block content %}
             {% endblock %}
+            </section>
             
             <footer class="box8">
                 I'm the footer!

@@ -60,13 +60,27 @@ body { font-family: Helvetica, Arial, sans-serif; font-size: 62.5%; }
 .boxgrid .first { margin-left: 0; }
 .boxgrid .last { margin-right: 0; }
 
+.reverse { float: right; }
+
 /*_________________________________________________________ Structure - Mixins */
 
+
 /*_________________________________________________________ Typography - Header */
-header { margin-top: 40px; }
-header h1 { font-family: 'TradeGothic18', Helvetica, Arial; font-size: 3.6em; text-transform: uppercase; font-weight: bold; text-align: center; 
-            border-top: 1px solid black; border-bottom: 1px solid black; line-height: 72px; padding-top: 12px; }
+header { margin-top: 16px; }
+header h1 { font-family: 'TradeGothic18', Helvetica, Arial; font-size: 60px; 
+            text-transform: uppercase; font-weight: bold; text-align: center;  
+            background: black; color: white; line-height: 42px;
+            height: 172px; padding-top: 52px; 
+            -moz-border-radius: 112px; -webkit-border-radius: 112px; border-radius: 112px; }
+header h1 span { font-size: 18px; font-weight: normal; }
 
 /*_________________________________________________________ Typography - Todo List */
-.check { }
-.task { font-size: 4.8em; text-transform: uppercase; }
+#todoList { padding-top: 112px;}
+.todo { padding: 16px 0; 
+        position: relative;}
+.check { position: absolute; width: 52px; height: 52px; top: 16px; left: 0; }
+.task { padding-left: 52px; font-family: 'TradeGothic18', Helvetica, Arial; font-size: 4.8em; text-transform: uppercase; line-height: 48px; }
+
+#doneList .todo { padding: 8px 0;}
+#doneList .check { position: absolute; width: 18px; height: 18px; top: 8px; left: 0; }
+#doneList .task { font-family: Helvetica, Arial; font-size: 1.8em; text-transform: none; line-height: 18px; color: #aaa; text-decoration: line-through;}
