@@ -12,4 +12,10 @@
             {% include 'task.html' %}
         {% endfor %}
     </ul>
+    
+    <ul id="doneList">
+        {% for todo in dones %}
+            {% include 'task.html' %}
+        {% endfor %}
+    </ul>
 {% endblock %}

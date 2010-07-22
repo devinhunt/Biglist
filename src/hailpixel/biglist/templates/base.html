@@ -17,8 +17,9 @@
                 
                 $.post($('#addTaskForm').attr('action'), $('#addTaskForm').serialize(), function(data) {
                     data = JSON.parse(data);
+                    
                     if(data.success) {
-                        $('#todoList').prepend(data.task_html);
+                        $('#todoList').prepend(data.html);
                     }
                 });
                 
@@ -26,7 +27,14 @@
             }
             
             function markDone(taskId) {
-                console.log(taskId)
+                $.post('/complete/', {todo_pk : taskId}, function(data) {
+                    data = JSON.parse(data);
+                    
+                    if(data.success) {
+                        $('#todo' + taskId).remove();
+                        $('#doneList').prepend(data.html);
+                    }
+                });
                 return false;
             }
         </script>

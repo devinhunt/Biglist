@@ -6,6 +6,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^$', 'hailpixel.biglist.views.index'),
     (r'^add/$', 'hailpixel.biglist.views.add_task'),
+    (r'^complete/$', 'hailpixel.biglist.views.mark_task_complete'),
     
     #static media
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/www/hailpixel/hailpixel-web/biglist/media/'}),

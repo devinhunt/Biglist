@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Template, Context
@@ -6,7 +7,10 @@ from hailpixel.biglist.models import Todo
 from hailpixel.biglist.forms import AddTaskForm
 
 def index(request):
-    return render_to_response('index.html', {'todos' : Todo.objects.all().order_by('-created')})
+    return render_to_response('index.html', {
+        'todos' : Todo.objects.all().filter(done = False).order_by('-created'),
+        'dones' : Todo.objects.all().filter(done = True).order_by('-finished')
+    })
     
 def add_task(request):
     if request.method == 'POST':
@@ -19,15 +23,36 @@ def add_task(request):
             task.save()
             
             # And generate the html response
-            task_html = render_to_string('task.html', {'todo' : task}).replace('"', '\\"').replace('\n', '\\n')
-            print task_html
+            task_html = render_to_string('task.html', {'todo' : task})
             
-            return HttpResponse('{"success" : true , "task_html" : "%s"}' % (task_html))
+            return HttpResponse(ajax_response(html_data = task_html))
         else:
-            return HttpResponse('{"success" : false }')
+            return HttpResponse(ajax_response(False, task_html))
     else:
         form = AddTaskForm()
     
     return render_to_response('add.html', {
         'form' : form
     })
+    
+def mark_task_complete(request):
+    if request.method == 'POST':
+        try:
+            todo = Todo.objects.get(pk = request.POST.get('todo_pk'))
+            todo.done = True
+            todo.finished = datetime.now()
+            todo.save()
+            task_html = render_to_string('task.html', {'todo' : todo})
+            
+            return HttpResponse(ajax_response(True, task_html));
+        except:
+            return HttpResponse(ajax_response(False));
+        
+    else:
+        return HttpResponse(ajax_response(False));
+    
+def ajax_response(success = True, html_data = '', data = ''):
+    if success:
+        return '{"success" : true , "html" : "%s", "data" : "%s"}' % (html_data.replace('"', '\\"').replace('\n', '\\n'), data)
+    else:
+        return '{"success" : false , "html" : "%s"}' % (html_data.replace('"', '\\"').replace('\n', '\\n'), data)
