@@ -41,7 +41,7 @@ blockquote, q { quotes: none; }
 	font-style: normal;
 }
 
-body { font-family: 'TradeGothic18', Helvetica, Arial, sans-serif; font-size: 62.5%; }
+body { font-family: Helvetica, Arial, sans-serif; font-size: 62.5%; }
 
 /*_________________________________________________________ Structure - Grids */
 .boxgrid { width: 960px; margin-left: auto; margin-right: auto; }
@@ -64,8 +64,8 @@ body { font-family: 'TradeGothic18', Helvetica, Arial, sans-serif; font-size: 62
 
 /*_________________________________________________________ Typography - Header */
 header { margin-top: 40px; }
-header h1 { font-size: 3.6em; text-transform: uppercase; font-weight: bold; text-align: center; 
-            border-top: 1px solid black; border-bottom: 1px solid black; line-height: 72px; padding-top: 4px; }
+header h1 { font-family: 'TradeGothic18', Helvetica, Arial; font-size: 3.6em; text-transform: uppercase; font-weight: bold; text-align: center; 
+            border-top: 1px solid black; border-bottom: 1px solid black; line-height: 72px; padding-top: 12px; }
 
 /*_________________________________________________________ Typography - Todo List */
 .check { }

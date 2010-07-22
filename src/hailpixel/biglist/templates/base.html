@@ -5,6 +5,19 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="content-language" content="en" />        
         <link rel="stylesheet" href="/static/css/screen.css" type="text/css" media="screen" charset="utf-8">
+        <script src="/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script type="text/javascript" charset="utf-8">
+            function addTaskForm() {
+                $('#addTask').load('/add/');
+                return false;
+            }
+            
+            function submitTask() {
+                $.post($('#addTaskForm').attr('action'), $('#addTaskForm').serialize());
+                return false;
+            }
+        </script>
     </head>
     
     <body>
@@ -12,8 +25,15 @@
             
             <header class="box8">
                 <h1>Devin Hunt's Big List</h1>
-                <a href="">Add a task</a>
-                <a href="">What. The. Fuck.</a>                
+                
+                <ul class="navigation">
+                    <li>
+                        <a href="#" onclick="return addTaskForm();">Add a task</a>
+                    </li>
+                    <li>
+                        <a href="">What. The. Fuck.</a>
+                    </li>
+                </ul>
             </header>
             
             {% block content %}
@@ -22,6 +42,7 @@
             <footer class="box8">
                 I'm the footer!
             </footer>
+            
         </div>
     </body>
 </html>
