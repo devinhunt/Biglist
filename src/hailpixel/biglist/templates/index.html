@@ -1,18 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-
     
-    <div id="addTask" >
+    <nav>
+        <ul class="options">
+            <li>
+                <a href="#" onclick="return addTaskForm();"> + Add a task</a>
+            </li>
+            <li>
+                <a href="">What. The. Fuck?</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="lineclear"></div>
+    <div id="addTask">
         
     </div>
     
+    <div id="wtf" role="information">
+    
+    </div>
+    
+    <section>
     <ul id="todoList">
         {% for todo in todos %}
             {% include 'task.html' %}
         {% endfor %}
     </ul>
+    </section>
     
+    <d>
     <ul id="doneList">
         {% for todo in dones %}
             {% include 'task.html' %}
