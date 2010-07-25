@@ -9,10 +9,10 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'mysql'
+DATABASE_ENGINE = 'django.db.backends.postgresql_psycopg2'
 DATABASE_NAME = 'hailpixel_big'
 DATABASE_USER = 'hailpixel_big'
-DATABASE_PASSWORD = 'cbbc1958'
+DATABASE_PASSWORD = 'cde96b85'
 DATABASE_HOST = ''
 DATABASE_PORT = ''
 
