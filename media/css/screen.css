@@ -43,6 +43,11 @@ blockquote, q { quotes: none; }
 
 body { font-family: Helvetica, Arial, sans-serif; font-size: 62.5%; }
 
+p { font-size: 1.4em; line-height: 24px; margin: 16px 0;}
+
+a { color: red; text-decoration: none; }
+a:hover { color: black; }
+
 /*_________________________________________________________ Structure - Grids */
 .boxgrid { width: 960px; margin-left: auto; margin-right: auto; }
 .box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8 { 
@@ -80,19 +85,29 @@ header h1 span { font-size: 18px; font-weight: normal; }
 
 /*_________________________________________________________ Structure - Content */
 #content { padding-top: 16px;}
+#context { padding-bottom: 32px; margin: 0 0 0 52px; }
+
+#wtf { margin: 0 0 0 52px; padding-top: 32px; }
+
+/*_________________________________________________________ Structure - Typography */
+
+#wtf h1, h2 { font-family: 'TradeGothic18', Helvetica, Arial; font-size: 4.8em; line-height: 48px;
+            text-transform: uppercase; font-weight: bold; }
+#wtf h2 { font-size: 2.4em; line-height: 24px; margin-top: 24px; }
 
 /*_________________________________________________________ Structure - Todo List */
 
 
-.options { margin-left: 52px; }
+.options { margin-left: 52px; padding: 32px 0; height: 28px; }
 .options li a { background: black; display: block; float: left; padding: 2px 16px 0 16px; margin-right: 8px;
                     font-family: 'TradeGothic18', Helvetica, Arial; letter-spacing: 2px; text-transform: uppercase;
                     font-weight: bold; text-decoration: none;
                     font-size: 14px; line-height: 26px; color: white;
                     
                    -moz-border-radius: 14px; -webkit-border-radius: 14px; border-radius: 14px;}
+.options .active { background: red; }
                    
-#todoList { padding-top: 56px;}
+#todoList { }
 
 /*_________________________________________________________ Typography - Todo List */
 
@@ -109,7 +124,12 @@ header h1 span { font-size: 18px; font-weight: normal; }
 #doneList .check:hover a { display: block; background: red; }
 #doneList .task { font-family: Helvetica, Arial; font-size: 1.8em; text-transform: none; line-height: 18px; color: #aaa; text-decoration: line-through;}
 
-#addTask { height: 80px; margin-left: 52px; padding-top: 16px; }
-.taskForm input[type="text"] { border: none; border-bottom: 2px solid black; padding: 0; width: 400px;
+#addTask { }
+.taskForm input[type="text"] { border: none; border-bottom: 2px solid black;
+                               padding: 0; width: 550px;
                                font-family: 'TradeGothic18', Helvetica, Arial; font-size: 2.4em; line-height: 18px; 
                                text-transform: uppercase; }
+.taskForm input[type="submit"] { width: 40px; height: 40px; border: none; background: black; color: white;
+                                 font-size: 2.4em; font-weight: bold; line-height: 24px;
+                                 -moz-border-radius: 20px; -webkit-border-radius: 20px; border-radius: 20px;}
+.taskForm input[type="submit"]:hover { color: red; cursor: pointer; }

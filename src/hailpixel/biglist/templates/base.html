@@ -6,58 +6,6 @@
         <meta http-equiv="content-language" content="en" />        
         <link rel="stylesheet" href="/static/css/screen.css" type="text/css" media="screen" charset="utf-8">
         <script src="/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
-        
-        <script type="text/javascript" charset="utf-8">
-            function addTaskForm() {
-                $('#addTask').load('/add/', function() {
-                    $('#addTask .taskForm').fadeIn('normal');
-                    $('#addTask .taskForm #id_task').select();
-                });
-                
-                return false;
-            }
-            
-            function submitTask() {
-                
-                $.post($('#addTaskForm').attr('action'), $('#addTaskForm').serialize(), function(data) {
-                    data = JSON.parse(data);
-                    
-                    if(data.success) {
-                        $('#todoList').prepend(data.html);
-                    }   
-                });
-                
-                return false;
-            }
-            
-            function markComplete(taskId) {
-                $.post('/complete/', {todo_pk : taskId}, function(data) {
-                    data = JSON.parse(data);
-                    
-                    if(data.success) {
-                        $('#todoList #todo' + taskId).slideUp('normal', function() {
-                            $('#todoList #todo' + taskId).remove();
-                        });
-                        
-                        $('#doneList').prepend(data.html);
-                        $('#doneList #todo' + taskId).hide().slideDown('normal');
-                    }
-                });
-                return false;
-            }
-            
-            function markIncomplete(taskId) {
-                $.post('/incomplete/', {todo_pk : taskId}, function(data) {
-                    data = JSON.parse(data);
-                    
-                    if(data.success) {
-                        $('#todo' + taskId).remove();
-                        $('#todoList').prepend(data.html);
-                    }
-                });
-                return false;
-            }
-        </script>
     </head>
     
     <body>
@@ -73,7 +21,6 @@
             </section>
             
             <footer class="box8">
-                I'm the footer!
             </footer>
             
         </div>

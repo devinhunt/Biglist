@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <section>
+        <ul id="todoList">
+        {% for todo in todos %}
+            {% include 'task.html' %}
+        {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

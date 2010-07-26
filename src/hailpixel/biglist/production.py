@@ -7,6 +7,8 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
+LOGIN_URL = '/'
+
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'postgresql_psycopg2'

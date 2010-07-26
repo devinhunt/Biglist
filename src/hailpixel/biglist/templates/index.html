@@ -1,38 +1,140 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+    <script type="text/javascript" charset="utf-8">
+        function toggleTaskForm(link) {
+            if($(link).hasClass('active')) {
+                $('#context').slideUp();
+                $(link).removeClass('active');
+            } else {
+                $(link).addClass('active');
+            
+                $('#addTask').load('/add/', function() {
+                    if($('#context').hasClass('hidden')) {
+                        $('#context').slideDown();
+                    }
+                
+                    $('#addTask .taskForm')
+                    $('#addTask .taskForm #id_task').select();
+                });
+            }
+            return false;
+        }
+        
+        function toggleInfo(link) {
+            $(link).toggleClass('active');
+            $('#wtf').slideToggle('normal');
+            return false;
+        }
+        
+        function submitTask() {
+            $('#addTaskForm #id_submit').attr('disabled', 'disabled');
+            $.post($('#addTaskForm').attr('action'), $('#addTaskForm').serialize(), function(data) {
+                data = JSON.parse(data);
+                
+                if(data.success) {
+                    $('#addTaskForm #id_task').val('').select();
+                    $('#addTaskForm #id_submit').attr('disabled', '');
+                    
+                    if(data.data.active) {
+                        $('#todoList').prepend(data.html);
+                    } else {
+                        
+                    }
+                }
+            });
+            
+            return false;
+        }
+        
+        function markComplete(taskId) {
+            $.post('/complete/', {todo_pk : taskId}, function(data) {
+                try {
+                    data = JSON.parse(data);
+                } catch (e) {
+                    return;
+                }
+                
+                if(data.success) {
+                    $('#todoList #todo' + taskId).slideUp('normal', function() {
+                        $('#todoList #todo' + taskId).remove();
+                    });
+                    
+                    $('#doneList').prepend(data.html);
+                    $('#doneList #todo' + taskId).hide().slideDown('normal');
+                }
+            });
+            return false;
+        }
+        
+        function markIncomplete(taskId) {
+            $.post('/incomplete/', {todo_pk : taskId}, function(data) {
+                try {
+                    data = JSON.parse(data);
+                } catch (e) {
+                    return;
+                }
+                if(data.success) {
+                    $('#todo' + taskId).remove();
+                    $('#todoList').prepend(data.html);
+                }
+            });
+            return false;
+        }
+    </script>
+    
+    <div id="wtf" role="information" class="hidden">
+        <h2>Long story short:</h2>
+        <h1>BigList is an experiment in streamlining <a href="http://www.hailpixel.com">my</a> workflow.</h1>
+        <p>
+            There is method behind this madness, and once I get around to translating my notes into inter-text, it will appear here
+            and in a sister blog post.
+        </p>
+        <h2>
+            These are things I'm working on today.
+        </h2>
+        <h1>
+            This is my todo list.
+        </h1>
+        <p>
+            Need me to finish a sketch? Fix a bug? By some milk? Something else entirely? 
+            Feel free to add it below. It will go into my suggested task inbox and will appear here when I
+            accept it
+        </p>
+    </div>
     
     <nav>
         <ul class="options">
             <li>
-                <a href="#" onclick="return addTaskForm();"> + Add a task</a>
+                <a href="#" onclick="return toggleTaskForm(this);"> + Add a task</a>
             </li>
             <li>
-                <a href="">What. The. Fuck?</a>
+                <a href="#" onclick="return toggleInfo(this);">What. The. Fuck?</a>
             </li>
         </ul>
     </nav>
     <div class="lineclear"></div>
-    <div id="addTask">
+    
+    <div id="context" class="hidden" role="controls">
+        <div id="addTask">
         
-    </div>
-    
-    <div id="wtf" role="information">
-    
+        </div>
     </div>
     
     <section>
-    <ul id="todoList">
-        {% for todo in todos %}
-            {% include 'task.html' %}
-        {% endfor %}
-    </ul>
+        <ul id="todoList">
+            {% for todo in todos %}
+                {% include 'task.html' %}
+            {% endfor %}
+        </ul>
     </section>
     
-    <d>
-    <ul id="doneList">
-        {% for todo in dones %}
-            {% include 'task.html' %}
-        {% endfor %}
-    </ul>
+    <section>
+        <ul id="doneList">
+            {% for todo in dones %}
+                {% include 'task.html' %}
+            {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
