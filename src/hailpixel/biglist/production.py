@@ -9,7 +9,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'postgresql'
+DATABASE_ENGINE = 'postgresql_psycopg2'
 DATABASE_NAME = 'hailpixel_big'
 DATABASE_USER = 'hailpixel_big'
 DATABASE_PASSWORD = 'cde96b85'
