@@ -14,7 +14,7 @@ MANAGERS = ADMINS
 DATABASE_ENGINE = 'postgresql_psycopg2'
 DATABASE_NAME = 'hailpixel_big'
 DATABASE_USER = 'hailpixel_big'
-DATABASE_PASSWORD = 'cde96b85'
+DATABASE_PASSWORD = ''
 DATABASE_HOST = ''
 DATABASE_PORT = ''
 
