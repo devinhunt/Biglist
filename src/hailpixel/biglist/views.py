@@ -17,7 +17,7 @@ def index(request):
 
 @login_required
 def inbox(request):
-    return render_to_response('index.html', {
+    return render_to_response('inbox.html', {
         'todos' : Todo.objects.filter(active = False).filter(done = False)
     })
     
@@ -80,6 +80,23 @@ def mark_todo_incomplete(request):
             task_html = render_to_string('task.html', {'todo' : todo})
             
             return HttpResponse(ajax_response(True, task_html));
+        except:
+            return HttpResponse(ajax_response(False));
+    else:
+        return HttpResponse(ajax_response(False));
+
+@login_required
+def modify_task(request):
+    if request.method == 'POST':
+        try:
+            todo = Todo.objects.get(pk = request.POST.get('todo_pk'))
+            action = request.POST.get('action')
+            if action == 'accept':
+                todo.active = True
+                todo.save()
+            else:
+                todo.delete()
+            return HttpResponse(ajax_response(True));
         except:
             return HttpResponse(ajax_response(False));
     else:

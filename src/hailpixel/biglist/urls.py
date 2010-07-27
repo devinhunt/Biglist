@@ -6,7 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'hailpixel.biglist.views.index', name='index'),
-    (r'^add/$', 'hailpixel.biglist.views.add_task'),
+    (r'^task/add/$', 'hailpixel.biglist.views.add_task'),
+    (r'^task/modify/$', 'hailpixel.biglist.views.modify_task'),
     (r'^complete/$', 'hailpixel.biglist.views.mark_todo_complete'),
     (r'^incomplete/$', 'hailpixel.biglist.views.mark_todo_incomplete'),
     (r'^inbox/$', 'hailpixel.biglist.views.inbox'),

@@ -9,14 +9,15 @@
                 $(link).removeClass('active');
             } else {
                 $(link).addClass('active');
+                $('#loading').show();
             
-                $('#addTask').load('/add/', function() {
+                $('#addTask').load('/task/add/', function() {
                     if($('#context').hasClass('hidden')) {
                         $('#context').slideDown();
                     }
-                
-                    $('#addTask .taskForm')
+                    
                     $('#addTask .taskForm #id_task').select();
+                    $('#loading').hide();
                 });
             }
             return false;
@@ -29,6 +30,7 @@
         }
         
         function submitTask() {
+            $('#loading').show();
             $('#addTaskForm #id_submit').attr('disabled', 'disabled');
             $.post($('#addTaskForm').attr('action'), $('#addTaskForm').serialize(), function(data) {
                 data = JSON.parse(data);
@@ -40,8 +42,9 @@
                     if(data.data.active) {
                         $('#todoList').prepend(data.html);
                     } else {
-                        
+                        $('#addAccepted p').fadeIn("normal").delay(2000).fadeOut("normal");
                     }
+                    $('#loading').hide();
                 }
             });
             
@@ -105,20 +108,28 @@
     </div>
     
     <nav>
-        <ul class="options">
-            <li>
-                <a href="#" onclick="return toggleTaskForm(this);"> + Add a task</a>
-            </li>
-            <li>
-                <a href="#" onclick="return toggleInfo(this);">What. The. Fuck?</a>
-            </li>
-        </ul>
+        <div class="relative">
+            <ul class="options">
+                <li>
+                    <a href="#" onclick="return toggleTaskForm(this);"> + Add a task</a>
+                </li>
+                <li>
+                    <a href="#" onclick="return toggleInfo(this);">What. The. Fuck?</a>
+                </li>
+            </ul>
+            <div id="loading" class="hidden"></div>
+        </div>
     </nav>
     <div class="lineclear"></div>
     
     <div id="context" class="hidden" role="controls">
         <div id="addTask">
         
+        </div>
+        <div id="addAccepted">
+            <p class="hidden">
+                Success! Task added to Devin's todo inbox. 
+            </p>
         </div>
     </div>
     

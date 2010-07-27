@@ -1,11 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+    <script type="text/javascript" charset="utf-8">
+        function acceptTask(link, taskId) {
+            $(link).addClass('active');
+            $.post('/task/modify/', {todo_pk: taskId, action: "accept"}, function(data){
+                $('#todo' + taskId).slideUp();
+            });
+            return false;
+        }
+        
+        function removeTask(link, taskId) {
+            $(link).addClass('active');
+            $.post('/task/modify/', {todo_pk: taskId, action: "remove"}, function(data){
+                $('#todo' + taskId).slideUp();
+            });
+            return false;
+        }
+    </script>
+    
+    <div id="wtf">
+        <h1>Inbox</h1>
+    </div>
     
     <section>
         <ul id="todoList">
         {% for todo in todos %}
-            {% include 'task.html' %}
+            {% include 'task_pending.html' %}
         {% endfor %}
         </ul>
     </section>

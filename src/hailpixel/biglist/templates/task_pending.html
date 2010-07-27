@@ -1,16 +1,7 @@
-<li id="todo{{ todo.pk }}" class="todo">
-    <div class="check">
-        {% if todo.done %}
-        <a href="#" onclick="return markIncomplete({{ todo.pk }})">
-            Complete
-        </a>
-        {% else %}
-        <a href="#" onclick="return markComplete({{ todo.pk }})">
-            Incomplete
-        </a>
-        {% endif %}
-    </div>
+<li id="todo{{ todo.pk }}" class="todo mini">
     <div class="task">
         {{ todo.task }}
+        <a href="#" onclick="return acceptTask(this, {{ todo.pk }});">Accept</a>
+        <a href="#" onclick="return removeTask(this, {{ todo.pk }});">Remove</a>
     </div>
 </li>

@@ -73,6 +73,7 @@ a:hover { color: black; }
 .clear { clear: both; }
 .lineclear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
 .hidden { display: none; }
+.relative { position: relative; }
 
 /*_________________________________________________________ Typography - Header */
 header { margin-top: 16px; }
@@ -85,7 +86,7 @@ header h1 span { font-size: 18px; font-weight: normal; }
 
 /*_________________________________________________________ Structure - Content */
 #content { padding-top: 16px;}
-#context { padding-bottom: 32px; margin: 0 0 0 52px; }
+#context { padding-bottom: 16px; margin: 0 0 0 52px; }
 
 #wtf { margin: 0 0 0 52px; padding-top: 32px; }
 
@@ -98,7 +99,7 @@ header h1 span { font-size: 18px; font-weight: normal; }
 /*_________________________________________________________ Structure - Todo List */
 
 
-.options { margin-left: 52px; padding: 32px 0; height: 28px; }
+.options { padding: 32px 0 32px 52px; height: 28px; }
 .options li a { background: black; display: block; float: left; padding: 2px 16px 0 16px; margin-right: 8px;
                     font-family: 'TradeGothic18', Helvetica, Arial; letter-spacing: 2px; text-transform: uppercase;
                     font-weight: bold; text-decoration: none;
@@ -106,6 +107,8 @@ header h1 span { font-size: 18px; font-weight: normal; }
                     
                    -moz-border-radius: 14px; -webkit-border-radius: 14px; border-radius: 14px;}
 .options .active { background: red; }
+
+#loading { position: absolute; background: url('/static/img/loading.gif'); width: 16px; height: 16px; top: 40px; left: 24px; }
                    
 #todoList { }
 
@@ -117,6 +120,18 @@ header h1 span { font-size: 18px; font-weight: normal; }
 .check a { display: block; width: 52px; height: 52px; background: url('/static/img/check.jpg'); }
 .check:hover a { display: block; width: 52px; height: 52px; background: url('/static/img/check.jpg') 0 -52px; }
 .task { padding-left: 52px; font-family: 'TradeGothic18', Helvetica, Arial; font-size: 4.8em; text-transform: uppercase; line-height: 48px; }
+
+.mini .task { font-size: 2.4em; line-height: 24px;}
+.mini .task a { background: black; display: block; float: left; padding: 2px 6px 0 8px; margin-right: 8px;
+                    font-family: 'TradeGothic18', Helvetica, Arial; letter-spacing: 2px; text-transform: uppercase;
+                    font-weight: bold; text-decoration: none;
+                    font-size: 10px; line-height: 16px; color: white;
+                    
+                   -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px;}
+.mini .task a:hover { color: red; }
+
+.mini .task a.active { background: red; }
+.mini .task a.active:hover { color: white; }
 
 #doneList .todo { padding: 8px 0;}
 #doneList .check { position: absolute; width: 36px; height: 8px; top: 12px; left: 8px; }
@@ -133,3 +148,6 @@ header h1 span { font-size: 18px; font-weight: normal; }
                                  font-size: 2.4em; font-weight: bold; line-height: 24px;
                                  -moz-border-radius: 20px; -webkit-border-radius: 20px; border-radius: 20px;}
 .taskForm input[type="submit"]:hover { color: red; cursor: pointer; }
+
+#addAccepted { height: 24px; width: 550px; }
+#addAccepted p { text-align: center; margin: 0; }
